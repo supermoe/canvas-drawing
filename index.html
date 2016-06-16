@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type"text/css" href="css/style.css">
+		<script type="text/javascript" src="js/lib/paper-full.min.js"></script>
+		<script type="text/javascript" src="js/lib/jquery.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var canvas = document.getElementById('canvas');
+				paper.setup(canvas);
+				main(canvas);
+			}
+		</script>
+	</head>
+	<body>
+		<canvas id='canvas'></canvas>
+	</body>
+</html>
