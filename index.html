@@ -2,18 +2,20 @@
 <html>
 	<head>
 		<link rel="stylesheet" type"text/css" href="css/style.css">
-		<script type="text/javascript" src="js/lib/paper-full.min.js"></script>
+		<script type="text/javascript" src="js/lib/paper-full.js"></script>
 		<script type="text/javascript" src="js/lib/jquery.min.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 		<script type="text/javascript">
 			window.onload = function(){
-				var canvas = document.getElementById('canvas');
-				paper.setup(canvas);
-				main(canvas);
+				var draw = document.getElementById('draw');
+				var display = document.getElementById('display');
+				paper.setup(draw);
+				main(draw, display);
 			}
 		</script>
 	</head>
 	<body>
-		<canvas id='canvas'></canvas>
+		<canvas id='draw'></canvas>
+		<canvas id='display'></canvas>
 	</body>
 </html>
