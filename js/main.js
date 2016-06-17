@@ -3,6 +3,7 @@ var color = '#E62062';	// Stroke color
 var weight = 3;			// Stroke weight/width
 var debug = true;		// Display debug
 var maxSteps = 50;		// Max number of steps before splitting a stroke
+var paths = [];			// All paths drawn during this session
 
 // Entry point
 function main(c_draw, c_display){
@@ -10,7 +11,6 @@ function main(c_draw, c_display){
 	var drawId;
 	var lastPosition = {x:0, y:0};
 	var mouse = {x:0, y:0}
-	var paths = [];
 	var currentPath;
 	var drawing = false;
 	var steps = 0;
@@ -20,7 +20,7 @@ function main(c_draw, c_display){
 	c_display.height = c_draw.height;
 
 	// Update mouse position
-	$(c_draw).mousemove(e => {
+	$(c_draw).mousemove(function (e) {
 		var rect = c_draw.getBoundingClientRect();
 		mouse.x = e.pageX - rect.left;
 		mouse.y = e.pageY - rect.top;
@@ -31,8 +31,9 @@ function main(c_draw, c_display){
 			lastPosition.y = mouse.y;
 		}
 		steps++;
+
+		// Stop the stroke if too big, then start another one
 		if (steps > maxSteps){
-			console.log(steps);
 			endStroke();
 			beginStroke();
 		}
@@ -62,6 +63,7 @@ function main(c_draw, c_display){
 		currentPath.simplify();
 		paths.push(currentPath);
 		paper.view.draw();
+		// Clone raw data to display canvas
 		c_display.getContext('2d').drawImage(c_draw, 0, 0);
 		paper.project.activeLayer.removeChildren();
 	}
