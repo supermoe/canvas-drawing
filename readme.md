@@ -1,8 +1,8 @@
 ## Storage
-The storage of choice is localStorage.
+Drawings are stored in localStorage.
 format is as such :
 
-	- drawing_storage : _array_
-	- drawing_storage[i] : {data: [paper.js JSON project]}
+	drawing_storage : "stringified array"
+	drawing_storage[i] : {data: [paper.js JSON project]}
 
-use _save(slot_number)_ and _load(slot_number)_ to a specific slot;
+use **save(slot_number)** and **load(slot_number)** to save or load a specific slot;

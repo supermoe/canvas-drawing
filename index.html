@@ -6,6 +6,7 @@
 		<script type="text/javascript" src="js/lib/jquery.min.js"></script>
 		<script type="text/javascript" src="js/lib/jquery.mobile-events.min.js"></script>
 		<script type="text/javascript" src="js/store.js"></script>
+		<script type="text/javascript" src="js/art.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 		<script type="text/javascript">
 			window.onload = function(){
@@ -21,9 +22,9 @@
 			<canvas id='display'></canvas>
 			<canvas id='draw'></canvas>
 		</div>
-		<button onclick='save(0)'>Save Slot 0</button>
-		<button onclick='load(0)'>Load Slot 0</button>
-		<button onclick='save(1)'>Save Slot 1</button>
-		<button onclick='load(1)'>Load Slot 1</button>
+		<button onclick='storage.save(0)'>Save Slot 0</button>
+		<button onclick='storage.load(0)'>Load Slot 0</button>
+		<button onclick='storage.save(1)'>Save Slot 1</button>
+		<button onclick='storage.load(1)'>Load Slot 1</button>
 	</body>
 </html>
