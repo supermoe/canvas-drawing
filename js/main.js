@@ -19,11 +19,17 @@ function main(c_draw, c_display){
 	c_display.width = c_draw.width;
 	c_display.height = c_draw.height;
 
-	// Update mouse position
-	$(c_draw).mousemove(function (e) {
+	function getMouse(e) {
 		var rect = c_draw.getBoundingClientRect();
-		mouse.x = e.pageX - rect.left;
-		mouse.y = e.pageY - rect.top;
+		mouse.x = e.pageX || e.originalEvent.touches[0].pageX;
+		mouse.y = e.pageY || e.originalEvent.touches[0].pageY;
+		mouse.x -= rect.left;
+		mouse.y -= rect.top;
+	}
+
+	// Update mouse position
+	$(c_draw).on('tapmove', function (e) {
+		getMouse(e);
 		if (drawing) {
 			if (lastPosition.x != mouse.x && lastPosition.y != mouse.y)
 				lastPoint = draw(mouse, currentPath);
@@ -40,13 +46,15 @@ function main(c_draw, c_display){
 	});
 
 	// Start a stroke
-	$(c_draw).mousedown(function (e) {
+	$(c_draw).on('tapstart', function (e) {
+		getMouse(e);
 		beginStroke(true);
 		drawing = true;
 	});
 
 	// End a stroke and save it
-	$(c_draw).mouseup(function () {
+	$(c_draw).on('tapend', function (e) {
+		console.log("endstroke")
 		endStroke();
 		drawing = false;
 	});
