@@ -16,7 +16,7 @@ var art = {
 
 		// Update mouse position
 		$(c_draw).on('tapmove', function (e) {
-			this.getMouse(e);
+			this.updateMouse(e);
 			if (this.drawing) {
 				if (this.lastPosition.x != this.mouse.x && this.lastPosition.y != this.mouse.y)
 					this.lastPoint = this.draw(this.mouse, this.currentPath);
@@ -35,7 +35,7 @@ var art = {
 
 		// Start a stroke
 		$(c_draw).on('tapstart', function (e) {
-			this.getMouse(e);
+			this.updateMouse(e);
 			this.beginStroke(true);
 			this.drawing = true;
 		}.bind(this));
@@ -47,7 +47,7 @@ var art = {
 		}.bind(this));
 	},
 
-	getMouse: function (e) {
+	updateMouse: function (e) {
 		var rect = this.c_draw.getBoundingClientRect();
 		this.mouse.x = e.pageX || e.originalEvent.touches[0].pageX;
 		this.mouse.y = e.pageY || e.originalEvent.touches[0].pageY;
